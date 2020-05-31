@@ -1,17 +1,21 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { themes } from 'react95';
 import GlobalStyle from './styles/GlobalStyles';
 import TaskBar from './layouts/TaskBar';
+import Background from './components/Background';
+
+const Container = styled.div``;
 
 function App() {
   return (
-    <div>
+    <Container>
       <GlobalStyle />
       <ThemeProvider theme={themes.default}>
+        <Background />
         <TaskBar />
       </ThemeProvider>
-    </div>
+    </Container>
   );
 }
 

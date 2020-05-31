@@ -4,3 +4,7 @@
 
 - [ ] Resume
 - [ ] Tetris
+
+
+## Todo
+- [ ] Redux Setting
