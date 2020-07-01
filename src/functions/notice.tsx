@@ -22,15 +22,14 @@ const Header = styled(WindowHeader)`
 
 addRootElement(CONTAINER_ID);
 
-function notice(message: string) {
-  const container: HTMLElement = document.getElementById(CONTAINER_ID)!;
+function notice(message: string): Promise<void> {
+  const container = document.getElementById(CONTAINER_ID);
 
   return new Promise((resolve) => {
-    console.log(container);
-    const handleClose = (isConfirmed: boolean) => {
+    const handleClose = (): void => {
       if (container) {
         ReactDOM.unmountComponentAtNode(container);
-        resolve(isConfirmed);
+        resolve();
       }
     };
 

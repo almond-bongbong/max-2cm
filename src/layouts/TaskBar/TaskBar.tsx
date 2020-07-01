@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { AppBar, Avatar, Toolbar } from 'react95';
 import styled from 'styled-components';
 import moment from 'moment';
-import Menu from '../Menu';
+import Menu from 'layouts/Menu';
 
 const Container = styled(AppBar)`
   top: auto;
@@ -30,7 +30,7 @@ function TaskBar(): ReactElement {
       setNowMoment(moment());
     }, 1000);
 
-    return () => {
+    return (): void => {
       clearInterval(timer);
     };
   }, []);

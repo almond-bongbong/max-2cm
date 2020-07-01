@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import NoteIcon from 'assets/images/icons/icon-note.png';
 import ComputerIcon from 'assets/images/icons/icon-computer.png';
 import Icon from 'components/Icon';
-import notice from '../functions/notice';
+import notice from 'functions/notice';
 
 const Container = styled.div`
   display: flex;
@@ -15,13 +15,13 @@ const Container = styled.div`
   align-content: start;
 `;
 
-function Background() {
+function Background(): ReactElement {
   return (
     <Container>
       <Icon
         icon={NoteIcon}
         name="note"
-        handleDoubleClick={() => {
+        handleDoubleClick={(): void => {
           window.open(
             'https://www.notion.so/maxxlee/Max-s-2837e7f09c574389b0208204b10c72b7',
             '_blank'
@@ -31,7 +31,7 @@ function Background() {
       <Icon
         icon={ComputerIcon}
         name="computer"
-        handleDoubleClick={() => {
+        handleDoubleClick={(): void => {
           notice('준비중입니다.');
         }}
       />
