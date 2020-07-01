@@ -7,26 +7,34 @@ interface Props {
   handleDoubleClick: () => void;
 }
 
-const Container = styled.div`
-  width: 40px;
-  padding: 10px;
+const Container = styled.button`
+  width: 60px;
+  padding: 5px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
   text-align: center;
+  cursor: pointer;
+  &:focus {
+    outline: 1px dashed #aaa;
+  }
 `;
 
 const IconImage = styled.img`
   display: block;
-  width: 100%;
+  width: 40px;
+  margin: 0 auto 5px;
 `;
 
 const Text = styled.div`
-  margin-top: 5px;
   color: #fff;
   font-size: 13px;
+  text-align: center;
 `;
 
 function Icon({ icon, name, handleDoubleClick }: Props) {
   return (
-    <Container onDoubleClick={handleDoubleClick}>
+    <Container type="button" onDoubleClick={handleDoubleClick}>
       <IconImage src={icon} />
       <Text>{name}</Text>
     </Container>
