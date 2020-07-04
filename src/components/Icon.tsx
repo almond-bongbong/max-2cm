@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -32,7 +32,7 @@ const Text = styled.div`
   text-align: center;
 `;
 
-function Icon({ icon, name, handleDoubleClick }: Props) {
+function Icon({ icon, name, handleDoubleClick }: Props): ReactElement {
   return (
     <Container type="button" onDoubleClick={handleDoubleClick}>
       <IconImage src={icon} />

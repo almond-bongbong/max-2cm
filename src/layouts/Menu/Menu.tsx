@@ -15,13 +15,13 @@ const MenuList = styled(List)`
 function Menu(): ReactElement {
   const [open, setOpen] = React.useState(false);
 
-  function handleClick() {
+  const handleClick = (): void => {
     setOpen(!open);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = (): void => {
     setOpen(false);
-  }
+  };
 
   return (
     <Container>

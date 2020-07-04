@@ -20,7 +20,7 @@
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.1",
     "react95": "^2.0.0",
     "styled-components": "^5.1.0",
     "typescript": "^3.9.3"
