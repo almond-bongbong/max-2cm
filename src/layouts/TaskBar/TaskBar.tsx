@@ -3,6 +3,7 @@ import { AppBar, Avatar, Toolbar } from 'react95';
 import styled from 'styled-components';
 import moment from 'moment';
 import Menu from 'layouts/Menu';
+import TaskList from 'layouts/TaskList';
 
 const Container = styled(AppBar)`
   top: auto;
@@ -39,6 +40,7 @@ function TaskBar(): ReactElement {
     <Container>
       <Toolbar style={{ justifyContent: 'space-between' }}>
         <Menu />
+        <TaskList />
         <TimeSquare square>
           {nowMoment.format('HH')}
           <Colon>:</Colon>

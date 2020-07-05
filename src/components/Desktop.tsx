@@ -15,9 +15,16 @@ const Container = styled.div`
   align-content: start;
 `;
 
-function Background(): ReactElement {
+function Desktop(): ReactElement {
   return (
     <Container>
+      <Icon
+        icon={ComputerIcon}
+        name="computer"
+        handleDoubleClick={(): void => {
+          notice({ title: 'computer.exe', message: '준비중입니다.' });
+        }}
+      />
       <Icon
         icon={NoteIcon}
         name="note"
@@ -28,15 +35,8 @@ function Background(): ReactElement {
           );
         }}
       />
-      <Icon
-        icon={ComputerIcon}
-        name="computer"
-        handleDoubleClick={(): void => {
-          notice('준비중입니다.');
-        }}
-      />
     </Container>
   );
 }
 
-export default Background;
+export default Desktop;

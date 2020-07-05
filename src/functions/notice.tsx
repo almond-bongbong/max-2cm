@@ -22,7 +22,12 @@ const Header = styled(WindowHeader)`
 
 addRootElement(CONTAINER_ID);
 
-function notice(message: string): Promise<void> {
+interface Options {
+  title: string;
+  message: string;
+}
+
+function notice({ title, message }: Options): Promise<void> {
   const container = document.getElementById(CONTAINER_ID);
 
   return new Promise((resolve) => {
@@ -37,7 +42,7 @@ function notice(message: string): Promise<void> {
       <ThemeProvider theme={themes.default}>
         <WindowContainer>
           <Header>
-            <span>react95.exe</span>
+            <span>{title}</span>
             <Button
               onClick={handleClose}
               style={{ marginRight: '-6px', marginTop: '1px' }}

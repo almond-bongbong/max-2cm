@@ -1,21 +1,25 @@
 import React, { ReactElement } from 'react';
+import { Provider } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
 import { themes } from 'react95';
 import GlobalStyle from 'assets/styles/GlobalStyles';
 import TaskBar from 'layouts/TaskBar';
-import Background from 'components/Background';
+import Desktop from 'components/Desktop';
+import { store } from 'store/config';
 
 const Container = styled.div``;
 
 function App(): ReactElement {
   return (
-    <Container>
-      <GlobalStyle />
-      <ThemeProvider theme={themes.default}>
-        <Background />
-        <TaskBar />
-      </ThemeProvider>
-    </Container>
+    <Provider store={store}>
+      <Container>
+        <GlobalStyle />
+        <ThemeProvider theme={themes.default}>
+          <Desktop />
+          <TaskBar />
+        </ThemeProvider>
+      </Container>
+    </Provider>
   );
 }
 
