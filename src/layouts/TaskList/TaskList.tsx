@@ -4,13 +4,13 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   flex: 1;
-  padding: 0 15px;
+  padding: 0 7px;
 `;
 
 const DividerLine = styled(Divider)`
   display: inline-block;
   vertical-align: middle;
-  margin-right: 15px;
+  margin-right: 7px;
 `;
 
 function TaskList(): ReactElement {

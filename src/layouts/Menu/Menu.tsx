@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Button, Divider, List, ListItem } from 'react95';
 import styled from 'styled-components';
+import windowLogo from 'assets/images/common/windows-logo.png';
 
 const Container = styled.div`
   display: inline-block;
@@ -34,7 +35,8 @@ function Menu(): ReactElement {
         </MenuList>
       )}
       <Button onClick={handleClick} active={open} style={{ fontWeight: 'bold' }}>
-        Start
+        <img src={windowLogo} alt="windows logo" />
+        <span>Start</span>
       </Button>
     </Container>
   );
