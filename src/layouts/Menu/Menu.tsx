@@ -8,6 +8,11 @@ const Container = styled.div`
   position: relative;
 `;
 
+const WindowImage = styled.img`
+  width: 20px;
+  margin-right: 5px;
+`;
+
 const MenuList = styled(List)`
   z-index: 10;
   top: -12px;
@@ -35,7 +40,7 @@ function Menu(): ReactElement {
         </MenuList>
       )}
       <Button onClick={handleClick} active={open} style={{ fontWeight: 'bold' }}>
-        <img src={windowLogo} alt="windows logo" />
+        <WindowImage src={windowLogo} alt="windows logo" />
         <span>Start</span>
       </Button>
     </Container>

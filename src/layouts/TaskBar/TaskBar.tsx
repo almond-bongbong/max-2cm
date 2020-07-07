@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import moment from 'moment';
 import Menu from 'layouts/Menu';
 import TaskList from 'layouts/TaskList';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store/modules';
 
 const Container = styled(AppBar)`
   top: auto;
@@ -25,6 +27,7 @@ const Colon = styled.span`
 
 function TaskBar(): ReactElement {
   const [nowMoment, setNowMoment] = useState(moment());
+  const { taskList } = useSelector((state: RootState) => state.task);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -40,7 +43,7 @@ function TaskBar(): ReactElement {
     <Container>
       <Toolbar style={{ justifyContent: 'space-between' }}>
         <Menu />
-        <TaskList />
+        <TaskList taskList={taskList} />
         <TimeSquare square>
           {nowMoment.format('HH')}
           <Colon>:</Colon>

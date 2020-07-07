@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface Task {
-  name: string;
-  active: boolean;
-}
+import { Task } from 'types/task';
 
 interface State {
   taskList: Task[];
@@ -19,6 +15,10 @@ export default createSlice({
   reducers: {
     addTask: (state, action: PayloadAction<Task>): void => {
       state.taskList.push(action.payload);
+    },
+    removeTask: (state, action: PayloadAction<string>): void => {
+      const findTaskIndex = state.taskList.findIndex((t) => t.name === action.payload);
+      state.taskList.splice(findTaskIndex, 1);
     },
   },
 });
