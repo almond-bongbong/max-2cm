@@ -9,6 +9,7 @@ interface Props {
 
 const Container = styled.button`
   width: 60px;
+  margin: 3px;
   padding: 5px 0;
   border: 0;
   outline: 0;
