@@ -2,9 +2,14 @@ import React, { ReactElement } from 'react';
 import Icon from 'components/Icon';
 import TetrisIcon from 'assets/images/icons/icon-tetris.png';
 import { Button, Window, WindowContent, WindowHeader } from 'react95';
-import Draggable from 'react-draggable';
 import styled from 'styled-components';
 import useToggle from 'hooks/common/useToggle';
+import { Rnd } from 'react-rnd';
+
+const WindowContainer = styled(Window)`
+  width: 600px;
+  height: 800px;
+`;
 
 const WindowHeaderContainer = styled(WindowHeader)`
   display: flex;
@@ -29,8 +34,20 @@ function Tetris(): ReactElement {
     <>
       <Icon icon={TetrisIcon} name="tetris" handleDoubleClick={run} />
       {running && (
-        <Draggable handle={`.${WindowHeaderContainer.styledComponentId}`}>
-          <Window style={{ width: 400 }}>
+        <Rnd
+          enableResizing={{
+            top: false,
+            topLeft: false,
+            topRight: false,
+            left: false,
+            right: false,
+            bottom: false,
+            bottomLeft: false,
+            bottomRight: false,
+          }}
+          dragHandleClassName={WindowHeaderContainer.styledComponentId}
+        >
+          <WindowContainer>
             <WindowHeaderContainer>
               <span>react95.exe</span>
               <CloseButton size={'sm'} square onClick={stop}>
@@ -45,8 +62,8 @@ function Tetris(): ReactElement {
                 <li>something here</li>
               </ul>
             </WindowContent>
-          </Window>
-        </Draggable>
+          </WindowContainer>
+        </Rnd>
       )}
     </>
   );
