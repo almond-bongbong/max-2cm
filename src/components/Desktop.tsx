@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { Computer, Note, Tetris } from 'applications';
+import { ComputerShortcut, NoteShortcut, TetrisShortcut } from 'applications';
 
 const Container = styled.div`
   display: flex;
@@ -15,9 +15,9 @@ const Container = styled.div`
 function Desktop(): ReactElement {
   return (
     <Container>
-      <Computer />
-      <Note />
-      <Tetris />
+      <ComputerShortcut />
+      <NoteShortcut />
+      <TetrisShortcut />
     </Container>
   );
 }

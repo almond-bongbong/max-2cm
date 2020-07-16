@@ -1,1 +1,1 @@
-export { default } from './Computer';
+export { default as ComputerShortcut } from 'applications/Computer/ComputerShortcut';

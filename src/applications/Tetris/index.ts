@@ -1,1 +1,1 @@
-export { default } from './Tetris';
+export { default as TetrisShortcut } from 'applications/Tetris/TetrisShortcut';

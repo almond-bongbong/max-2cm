@@ -5,7 +5,7 @@ import notice from 'functions/notice';
 import ComputerIcon from 'assets/images/icons/icon-computer.png';
 import { useDispatch } from 'react-redux';
 
-function Computer(): ReactElement {
+function ComputerShortcut(): ReactElement {
   const dispatch = useDispatch();
 
   return (
@@ -21,4 +21,4 @@ function Computer(): ReactElement {
   );
 }
 
-export default Computer;
+export default ComputerShortcut;

@@ -1,1 +1,1 @@
-export { default } from './Note';
+export { default as NoteShortcut } from 'applications/Note/NoteShortcut';

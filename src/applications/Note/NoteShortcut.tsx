@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import NoteIcon from 'assets/images/icons/icon-note.png';
 import Icon from 'components/Icon';
 
-function Note(): ReactElement {
+function NoteShortcut(): ReactElement {
   return (
     <Icon
       icon={NoteIcon}
@@ -17,4 +17,4 @@ function Note(): ReactElement {
   );
 }
 
-export default Note;
+export default NoteShortcut;

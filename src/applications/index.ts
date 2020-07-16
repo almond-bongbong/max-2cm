@@ -1,3 +1,3 @@
-export { default as Computer } from './Computer';
-export { default as Note } from './Note';
-export { default as Tetris } from './Tetris';
+export { ComputerShortcut } from './Computer';
+export { NoteShortcut } from './Note';
+export { TetrisShortcut } from './Tetris';
