@@ -7,4 +7,4 @@
 
 
 ## Todo
-- [ ] Redux Setting
+- [x] Redux Setting
