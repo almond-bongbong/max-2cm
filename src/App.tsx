@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
-import { themes } from 'react95';
+import original from 'react95/dist/themes/original';
 import GlobalStyle from 'assets/styles/GlobalStyles';
 import TaskBar from 'layouts/TaskBar';
 import Desktop from 'components/Desktop';
@@ -14,7 +14,7 @@ function App(): ReactElement {
     <Provider store={store}>
       <Container>
         <GlobalStyle />
-        <ThemeProvider theme={themes.default}>
+        <ThemeProvider theme={original}>
           <Desktop />
           <TaskBar />
         </ThemeProvider>

@@ -14,8 +14,10 @@ const WindowImage = styled.img`
 `;
 
 const MenuList = styled(List)`
+  position: absolute;
+  left: 0;
+  bottom: 38px;
   z-index: 10;
-  top: -12px;
 `;
 
 function Menu(): ReactElement {

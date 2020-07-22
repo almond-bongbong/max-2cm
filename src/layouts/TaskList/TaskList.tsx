@@ -25,7 +25,7 @@ interface Props {
 function TaskList({ taskList }: Props): ReactElement {
   return (
     <Container>
-      <DividerLine vertical />
+      <DividerLine orientation="vertical" size={30} />
       {taskList.map((t) => (
         <TaskItem key={t.name} active={t.active}>
           {t.name}

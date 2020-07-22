@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, themes, Window, WindowContent, WindowHeader } from 'react95';
+import { Button, Window, WindowContent, WindowHeader } from 'react95';
+import original from 'react95/dist/themes/original';
 import { addRootElement } from 'libs/generateElement';
 import styled, { ThemeProvider } from 'styled-components';
 
@@ -39,7 +40,7 @@ function notice({ title, message }: Options): Promise<void> {
     };
 
     ReactDOM.render(
-      <ThemeProvider theme={themes.default}>
+      <ThemeProvider theme={original}>
         <WindowContainer>
           <Header>
             <span>{title}</span>

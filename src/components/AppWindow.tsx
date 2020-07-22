@@ -17,25 +17,45 @@ const Container = styled(Window)`
   height: 800px;
 `;
 
-const HeaderWrap = styled.div`
-  & * {
-    user-select: none;
-  }
-`;
-
 const Header = styled(WindowHeader)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  * {
+    user-select: none;
+  }
 `;
 
-const CloseButton = styled(Button)`
-  margin-right: -6px;
-  margin-top: 1px;
+const CloseIcon = styled.span`
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: -1px;
+  margin-top: -1px;
+  transform: rotateZ(45deg);
+  position: relative;
 
-  span {
-    font-weight: bold;
-    transform: translateY(-1px);
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background-color: #000;
+  }
+
+  &:before {
+    height: 100%;
+    width: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &:after {
+    height: 3px;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;
 
@@ -51,9 +71,9 @@ function AppWindow({ run, title, children, onClose }: Props): ReactElement {
   const [[x, y], setPosition] = useState([0, 0]);
 
   const handleDrag = useCallback((e: MouseEvent): void => {
-    const { clientX, clientY } = e;
-    const [lastX, lastY] = startPosition.current;
-    setPosition([clientX - lastX, clientY - lastY]);
+    const { pageX, pageY } = e;
+    const [offsetX, offsetY] = startPosition.current;
+    setPosition([pageX - offsetX - 8, pageY - offsetY - 8]);
   }, []);
 
   const handleDragEnd = useCallback((): void => {
@@ -63,9 +83,11 @@ function AppWindow({ run, title, children, onClose }: Props): ReactElement {
 
   const handleDragStart = useCallback(
     (e: SyntheticEvent<HTMLDivElement, MouseEvent>): void => {
-      document.addEventListener('mousemove', handleDrag);
-      document.addEventListener('mouseup', handleDragEnd);
-      startPosition.current = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
+      if (e.target === e.currentTarget) {
+        document.addEventListener('mousemove', handleDrag);
+        document.addEventListener('mouseup', handleDragEnd);
+        startPosition.current = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
+      }
     },
     [handleDrag, handleDragEnd]
   );
@@ -74,18 +96,17 @@ function AppWindow({ run, title, children, onClose }: Props): ReactElement {
     <>
       {run && (
         <Container
+          className="window"
           style={{
             transform: `translate3D(${x}px, ${y}px, 0)`,
           }}
         >
-          <HeaderWrap onMouseDown={handleDragStart}>
-            <Header>
-              <span>{title}</span>
-              <CloseButton size="sm" square onClick={onClose}>
-                <span>x</span>
-              </CloseButton>
-            </Header>
-          </HeaderWrap>
+          <Header onMouseDown={handleDragStart}>
+            <span>{title}</span>
+            <Button onClick={onClose}>
+              <CloseIcon />
+            </Button>
+          </Header>
           <WindowContent>{children}</WindowContent>
         </Container>
       )}
