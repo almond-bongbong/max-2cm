@@ -3,11 +3,13 @@ import React, {
   ReactNode,
   SyntheticEvent,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from 'react';
-import { Button, Window, WindowContent, WindowHeader } from 'react95';
 import styled from 'styled-components';
+import { CloseIcon } from 'assets/styles/Icons';
+import { Button, Window, WindowContent, WindowHeader } from 'react95';
 
 const Container = styled(Window)`
   position: absolute;
@@ -15,6 +17,10 @@ const Container = styled(Window)`
   left: 0;
   width: 600px;
   height: 800px;
+
+  &:focus {
+    outline: 0;
+  }
 `;
 
 const Header = styled(WindowHeader)`
@@ -27,38 +33,6 @@ const Header = styled(WindowHeader)`
   }
 `;
 
-const CloseIcon = styled.span`
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-left: -1px;
-  margin-top: -1px;
-  transform: rotateZ(45deg);
-  position: relative;
-
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    background-color: #000;
-  }
-
-  &:before {
-    height: 100%;
-    width: 3px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  &:after {
-    height: 3px;
-    width: 100%;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-`;
-
 interface Props {
   run: boolean;
   title: string;
@@ -67,8 +41,14 @@ interface Props {
 }
 
 function AppWindow({ run, title, children, onClose }: Props): ReactElement {
+  const containerRef = useRef<HTMLDivElement>(null);
   const startPosition = useRef([0, 0]);
   const [[x, y], setPosition] = useState([0, 0]);
+  const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    if (run) containerRef.current?.focus();
+  }, [run]);
 
   const handleDrag = useCallback((e: MouseEvent): void => {
     const { pageX, pageY } = e;
@@ -92,16 +72,28 @@ function AppWindow({ run, title, children, onClose }: Props): ReactElement {
     [handleDrag, handleDragEnd]
   );
 
+  const handleFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleBlur = useCallback(() => {
+    setIsFocused(false);
+  }, []);
+
   return (
     <>
       {run && (
         <Container
+          ref={containerRef}
+          tabIndex={1}
           className="window"
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           style={{
             transform: `translate3D(${x}px, ${y}px, 0)`,
           }}
         >
-          <Header onMouseDown={handleDragStart}>
+          <Header active={isFocused} onMouseDown={handleDragStart}>
             <span>{title}</span>
             <Button onClick={onClose}>
               <CloseIcon />

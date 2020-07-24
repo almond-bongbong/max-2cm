@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Icon from 'components/Icon';
+import AppIcon from 'components/AppIcon';
 import TetrisIcon from 'assets/images/icons/icon-tetris.png';
 import useRunApplication from 'hooks/common/useRunApplication';
 import AppWindow from 'components/AppWindow';
@@ -18,7 +18,7 @@ function TetrisShortcut(): ReactElement {
 
   return (
     <>
-      <Icon icon={TetrisIcon} name="tetris" handleDoubleClick={handleRun} />
+      <AppIcon icon={TetrisIcon} name="tetris" handleDoubleClick={handleRun} />
       <AppWindow run={running} title="tetris" onClose={handleStop}>
         <TetrisApp />
       </AppWindow>

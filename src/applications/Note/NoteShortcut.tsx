@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import NoteIcon from 'assets/images/icons/icon-note.png';
-import Icon from 'components/Icon';
+import AppIcon from 'components/AppIcon';
 
 function NoteShortcut(): ReactElement {
   return (
-    <Icon
+    <AppIcon
       icon={NoteIcon}
       name="note"
       handleDoubleClick={(): void => {

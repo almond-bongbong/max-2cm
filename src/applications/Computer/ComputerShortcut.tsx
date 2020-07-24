@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Icon from 'components/Icon';
+import AppIcon from 'components/AppIcon';
 import taskSlice from 'store/modules/task';
 import notice from 'functions/notice';
 import ComputerIcon from 'assets/images/icons/icon-computer.png';
@@ -9,12 +9,12 @@ function ComputerShortcut(): ReactElement {
   const dispatch = useDispatch();
 
   return (
-    <Icon
+    <AppIcon
       icon={ComputerIcon}
       name="computer"
       handleDoubleClick={async (): Promise<void> => {
         dispatch(taskSlice.actions.addTask({ name: 'computer', active: true }));
-        await notice({ title: 'computer.exe', message: '준비중입니다.' });
+        await notice({ title: 'computer.exe', message: 'In ready.' });
         dispatch(taskSlice.actions.removeTask('computer'));
       }}
     />

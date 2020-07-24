@@ -4,6 +4,7 @@ import { Button, Window, WindowContent, WindowHeader } from 'react95';
 import original from 'react95/dist/themes/original';
 import { addRootElement } from 'libs/generateElement';
 import styled, { ThemeProvider } from 'styled-components';
+import { CloseIcon } from 'assets/styles/Icons';
 
 const CONTAINER_ID = 'notice-container';
 
@@ -44,13 +45,8 @@ function notice({ title, message }: Options): Promise<void> {
         <WindowContainer>
           <Header>
             <span>{title}</span>
-            <Button
-              onClick={handleClose}
-              style={{ marginRight: '-6px', marginTop: '1px' }}
-              size={'sm'}
-              square
-            >
-              <span style={{ fontWeight: 'bold', transform: 'translateY(-1px)' }}>x</span>
+            <Button onClick={handleClose}>
+              <CloseIcon />
             </Button>
           </Header>
           <WindowContent>{message}</WindowContent>

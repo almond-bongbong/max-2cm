@@ -33,7 +33,7 @@ const Text = styled.div`
   text-align: center;
 `;
 
-function Icon({ icon, name, handleDoubleClick }: Props): ReactElement {
+function AppIcon({ icon, name, handleDoubleClick }: Props): ReactElement {
   return (
     <Container type="button" onDoubleClick={handleDoubleClick}>
       <IconImage src={icon} />
@@ -42,4 +42,4 @@ function Icon({ icon, name, handleDoubleClick }: Props): ReactElement {
   );
 }
 
-export default Icon;
+export default AppIcon;
