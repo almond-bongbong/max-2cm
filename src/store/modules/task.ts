@@ -20,5 +20,9 @@ export default createSlice({
       const findTaskIndex = state.taskList.findIndex((t) => t.name === action.payload);
       state.taskList.splice(findTaskIndex, 1);
     },
+    toggleActive: (state, action: PayloadAction<{ name: string; active: boolean }>): void => {
+      const findTaskIndex = state.taskList.findIndex((t) => t.name === action.payload.name);
+      state.taskList[findTaskIndex].active = action.payload.active;
+    },
   },
 });

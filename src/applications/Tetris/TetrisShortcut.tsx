@@ -5,6 +5,8 @@ import useRunApplication from 'hooks/common/useRunApplication';
 import AppWindow from 'components/AppWindow';
 import TetrisApp from 'applications/Tetris/TetrisApp';
 
+const appName = 'tetris';
+
 function TetrisShortcut(): ReactElement {
   const [running, run, stop] = useRunApplication(false);
 
@@ -18,8 +20,8 @@ function TetrisShortcut(): ReactElement {
 
   return (
     <>
-      <AppIcon icon={TetrisIcon} name="tetris" handleDoubleClick={handleRun} />
-      <AppWindow run={running} title="tetris" onClose={handleStop}>
+      <AppIcon icon={TetrisIcon} name={appName} handleDoubleClick={handleRun} />
+      <AppWindow run={running} name={appName} title={appName} onClose={handleStop}>
         <TetrisApp />
       </AppWindow>
     </>

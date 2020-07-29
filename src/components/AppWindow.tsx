@@ -7,9 +7,12 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { CloseIcon } from 'assets/styles/Icons';
 import { Button, Window, WindowContent, WindowHeader } from 'react95';
+import { RootState } from 'store/modules';
+import taskSlice from 'store/modules/task';
 
 const Container = styled(Window)`
   position: absolute;
@@ -35,20 +38,30 @@ const Header = styled(WindowHeader)`
 
 interface Props {
   run: boolean;
+  name: string;
   title: string;
   children: ReactNode;
   onClose: () => void;
 }
 
-function AppWindow({ run, title, children, onClose }: Props): ReactElement {
+function AppWindow({ run, name, title, children, onClose }: Props): ReactElement {
+  const dispatch = useDispatch();
   const containerRef = useRef<HTMLDivElement>(null);
   const startPosition = useRef([0, 0]);
   const [[x, y], setPosition] = useState([0, 0]);
-  const [isFocused, setIsFocused] = useState(false);
+  const taskList = useSelector((state: RootState) => state.task.taskList);
+  const currentTask = taskList.find((t) => t.name === name);
+
+  const toggleTaskActive = useCallback(
+    (active: boolean) => {
+      dispatch(taskSlice.actions.toggleActive({ name, active }));
+    },
+    [dispatch, name]
+  );
 
   useEffect(() => {
-    if (run) containerRef.current?.focus();
-  }, [run]);
+    if (run) toggleTaskActive(true);
+  }, [run, toggleTaskActive]);
 
   const handleDrag = useCallback((e: MouseEvent): void => {
     const { pageX, pageY } = e;
@@ -73,12 +86,12 @@ function AppWindow({ run, title, children, onClose }: Props): ReactElement {
   );
 
   const handleFocus = useCallback(() => {
-    setIsFocused(true);
-  }, []);
+    toggleTaskActive(true);
+  }, [toggleTaskActive]);
 
   const handleBlur = useCallback(() => {
-    setIsFocused(false);
-  }, []);
+    toggleTaskActive(false);
+  }, [toggleTaskActive]);
 
   return (
     <>
@@ -93,7 +106,7 @@ function AppWindow({ run, title, children, onClose }: Props): ReactElement {
             transform: `translate3D(${x}px, ${y}px, 0)`,
           }}
         >
-          <Header active={isFocused} onMouseDown={handleDragStart}>
+          <Header active={currentTask?.active} onMouseDown={handleDragStart}>
             <span>{title}</span>
             <Button onClick={onClose}>
               <CloseIcon />
